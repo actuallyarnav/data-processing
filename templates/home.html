@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block head %}
+<title>Index</title>
+{% endblock %} {% block body %}
+<div
+    class="container d-flex justify-content-center align-items-center"
+    style="min-height: 100vh"
+>
+    <div class="mb-3">
+        <form enctype="multipart/form-data" action="/upload" method="POST">
+            <label for="formFile" class="form-label">Upload an image!</label>
+            <input class="form-control" name="file" type="file" id="formFile" />
+            <button
+                type="submit"
+                class="btn btn-primary"
+                style="margin-top: 20px"
+            >
+                Upload file
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

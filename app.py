@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 
 from werkzeug.utils import secure_filename
+from processing import process_csv 
 load_dotenv()
 UPLOAD_FOLDER='./static/uploads/'
 ALLOWED_EXTENSIONS = {'csv'}
@@ -35,9 +36,9 @@ def upload():
     filename = secure_filename(file.filename)
     path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     file.save(path)
+    summary_html = process_csv(path)
 
-    flash("File uploaded successfully!", "success")
-    return redirect('/')
+    return render_template('summary.html', summary=summary_html, filename=filename)
 
 
 @app.route('/about', methods=['POST', 'GET'])

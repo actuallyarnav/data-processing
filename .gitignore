@@ -2,3 +2,6 @@
 env/
 static/uploads/
 .env
+test/
+keys/
+__pycache__/

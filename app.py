@@ -40,9 +40,13 @@ def upload():
 
     return render_template('summary.html', summary=summary_html, filename=filename)
 
+@app.route("/health")
+def health():
+    return "OK", 200
 
 @app.route('/about', methods=['POST', 'GET'])
 def about():
     return render_template('about.html')
+
 if __name__ == "__main__":
-    app.run(port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)

@@ -5,3 +5,6 @@ static/uploads/
 test/
 keys/
 __pycache__/
+
+#ignore for now
+github/

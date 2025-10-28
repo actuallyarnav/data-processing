@@ -3,9 +3,10 @@ from dotenv import load_dotenv
 import os
 
 from werkzeug.utils import secure_filename
-from processing import process_csv 
+from processing import *
 load_dotenv()
 UPLOAD_FOLDER='./static/uploads/'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 ALLOWED_EXTENSIONS = {'csv'}
 
 app = Flask(__name__)
@@ -36,9 +37,23 @@ def upload():
     filename = secure_filename(file.filename)
     path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     file.save(path)
-    summary_html = process_csv(path)
+    flash("CSV uploaded!")
+    #summary_html = process_csv(path)
 
-    return render_template('summary.html', summary=summary_html, filename=filename)
+    return render_template('home.html', columns=readcols(path), filename=filename)
+
+
+@app.route('/analyze', methods=['POST'])
+def analyze():
+    filename = request.form['filename']
+    selected_column = request.form['selected_column']
+
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
+    # Example: show basic stats for the selected column
+    summary = summarize(file_path, selected_column)
+
+    return render_template('summary.html', column=selected_column, summary=summary)
 
 @app.route("/health")
 def health():

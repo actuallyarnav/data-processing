@@ -18,5 +18,22 @@
             </button>
         </form>
     </div>
+    {% if columns|length > 1 %}
+  <h3>Select a column to analyze:</h3>
+
+  <form action="{{ url_for('analyze') }}" method="post">
+    <select name="selected_column" class="form-select" required>
+      <option value="" disabled selected>Select a column</option>
+      {% for column in columns %}
+        <option value="{{ column }}">{{ column }}</option>
+      {% endfor %}
+    </select>
+
+    <input type="hidden" name="filename" value="{{ filename }}">
+    <br>
+    <button type="submit" class="btn btn-primary">Analyze</button>
+  </form>
+{% endif %}
+
 </div>
 {% endblock %}

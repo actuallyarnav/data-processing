@@ -1,39 +1,95 @@
-{% extends 'base.html' %} {% block head %}
-<title>Index</title>
-{% endblock %} {% block body %}
-<div
-    class="container d-flex justify-content-center align-items-center"
-    style="min-height: 100vh"
->
-    <div class="mb-3">
-        <form enctype="multipart/form-data" action="/upload" method="POST">
-            <label for="formFile" class="form-label">Upload an image!</label>
-            <input class="form-control" name="file" type="file" id="formFile" />
-            <button
-                type="submit"
-                class="btn btn-primary"
-                style="margin-top: 20px"
-            >
-                Upload file
-            </button>
-        </form>
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home | Data Proc</title>
+<style>
+    .upload-card {
+        border-radius: 14px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .upload-box {
+        border: 2px dashed #6c757d;
+        border-radius: 12px;
+        padding: 30px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .upload-box:hover {
+        border-color: #0d6efd;
+        background-color: rgba(13, 110, 253, 0.05);
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh">
+    <div class="col-lg-6 col-md-8">
+
+        <!-- Title -->
+        <div class="text-center mb-4">
+            <h1 class="fw-bold">Data Processing Platform</h1>
+            <p class="text-muted">
+                Upload a data file to analyze its structure and statistics
+            </p>
+        </div>
+
+        <!-- Upload Card -->
+        <div class="card upload-card p-4 mb-4">
+            <div class="card-body">
+
+                <form enctype="multipart/form-data" action="/upload" method="POST">
+                    <div class="upload-box text-center mb-3">
+                        <p class="text-muted mb-2">(only .csv files accepted)</p>
+                        <input
+                            class="form-control"
+                            name="file"
+                            type="file"
+                            accept=".csv"
+                            required
+                        />
+                    </div>
+
+                    <div class="d-grid">
+                        <button
+                            type="submit"
+                            id="submit-btn"
+                            class="btn btn-primary btn-lg"
+                        >
+                            Upload File
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <!-- Column Selection -->
+        <!-- {% if columns|length > 1 %}
+        <div class="card upload-card p-4">
+            <div class="card-body">
+                <h5 class="mb-3">Select a column to analyze</h5>
+
+                <form action="{{ url_for('analyze') }}" method="post">
+                    <select name="selected_column" class="form-select mb-3" required>
+                        <option value="" disabled selected>Select a column</option>
+                        {% for column in columns %}
+                        <option value="{{ column }}">{{ column }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <input type="hidden" name="filename" value="{{ filename }}">
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">
+                            Analyze Column
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %} -->
+
     </div>
-    {% if columns|length > 1 %}
-  <h3>Select a column to analyze:</h3>
-
-  <form action="{{ url_for('analyze') }}" method="post">
-    <select name="selected_column" class="form-select" required>
-      <option value="" disabled selected>Select a column</option>
-      {% for column in columns %}
-        <option value="{{ column }}">{{ column }}</option>
-      {% endfor %}
-    </select>
-
-    <input type="hidden" name="filename" value="{{ filename }}">
-    <br>
-    <button type="submit" class="btn btn-primary">Analyze</button>
-  </form>
-{% endif %}
-
 </div>
 {% endblock %}

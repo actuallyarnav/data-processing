@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Results | Data Proc</title>
+{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+
+    <h2 class="mb-3">Analysis Results</h2>
+    <p class="text-muted">Dataset: {{ filename }}</p>
+
+    {% if results.summary %}
+    <h4 class="mt-4">Summary Statistics</h4>
+    <div class="table-responsive">
+        {{ results.summary | safe }}
+    </div>
+    {% endif %}
+
+    {% if results.missing %}
+    <h4 class="mt-4">Missing Values</h4>
+    <div class="table-responsive">
+        {{ results.missing | safe }}
+    </div>
+    {% endif %}
+
+    {% if results.categorical %}
+    <h4 class="mt-4">Categorical Analysis</h4>
+    {% for col, table in results.categorical.items() %}
+        <h5 class="mt-3">{{ col }}</h5>
+        <div class="table-responsive">
+            {{ table | safe }}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+    <a href="{{ url_for('analyze') }}" class="btn btn-secondary mt-4">
+        Back to Analysis Options
+    </a>
+
+</div>
+{% endblock %}

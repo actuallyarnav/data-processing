@@ -1,10 +1,6 @@
 import pandas as pd
-import pandas as pd
 
 def analyze_columns(file_path):
-    """
-    Reads a CSV file and returns basic metadata about each column.
-    """
     df = pd.read_csv(file_path)
 
     columns = []

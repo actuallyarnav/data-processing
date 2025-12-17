@@ -8,6 +8,11 @@
     <script src="../static/js/bootstrap.min.js">
 
     </script>
+    <style>
+        .mainBody {
+            margin: 25px;
+        }
+    </style>
     {% block head %}{% endblock %}
 </head>
 
@@ -39,8 +44,10 @@
         </div>
     </nav>
 
+    <div class = "mainBody">
 
     {% block body %}{% endblock %}
+    </div>
 </body>
 
 </html>

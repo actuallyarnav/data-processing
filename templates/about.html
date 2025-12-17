@@ -1,8 +1,92 @@
-{% extends 'base.html' %} {% block head %}
-<title>Index</title>
-{% endblock %} {% block body %}
+{% extends "base.html" %}
 
-<div class="mb-3">
-    <p class="h1">About this project</p>
+{% block head %}
+<title>About | Data Proc</title>
+<style>
+    .about-card {
+        border-radius: 14px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .feature-icon {
+        font-size: 1.4rem;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">About the Project</h1>
+        <p class="text-muted mt-2">
+            A cloud-based data processing and analytics platform
+        </p>
+    </div>
+
+    <div class="card about-card p-4 mb-5">
+        <div class="card-body">
+            <p class="mb-3">
+                <strong>Data Proc</strong> is a cloud-hosted data analytics platform designed to simplify
+                exploratory data analysis for structured datasets. Users can upload CSV files, configure
+                analysis options, and generate statistical insights and visual summaries through a
+                user-friendly web interface.
+            </p>
+            <p class="mb-0">
+                The platform emphasizes modular design, scalability, and usability, combining modern
+                web technologies with Python-based data processing tools.
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+            <div class="card about-card p-4 h-100">
+                <h5 class="mb-3">Technologies Used</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>• Flask (Backend Framework)</li>
+                    <li>• Bootstrap (Frontend UI)</li>
+                    <li>• Pandas & NumPy (Data Processing)</li>
+                    <li>• Docker (Containerization)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card about-card p-4 h-100">
+                <h5 class="mb-3">Project Objectives</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>• Enable intuitive dataset upload and analysis</li>
+                    <li>• Provide schema-aware statistical insights</li>
+                    <li>• Maintain modular and scalable architecture</li>
+                    <li>• Support cloud-based deployment</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mb-4">
+        <h3 class="fw-bold">Team</h3>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+            <div class="card about-card text-center p-4">
+                <h5 class="mb-1">Arnav J Rathod</h5>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card about-card text-center p-4">
+                <h5 class="mb-1">Aditya N Sharma</h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="text-center mt-5 text-muted small">
+        Project developed for the Third-year B. Sc (Computer Science) final semester project.
+    </div>
+
 </div>
 {% endblock %}

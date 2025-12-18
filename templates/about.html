@@ -3,89 +3,80 @@
 {% block head %}
 <title>About | Data Proc</title>
 <style>
-    .about-card {
-        border-radius: 14px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    .page {
+        max-width: 900px;
+        margin: 0 auto;
     }
 
-    .feature-icon {
-        font-size: 1.4rem;
+    .section {
+        padding: 3rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
+
+    .section:last-child {
+        border-bottom: none;
+    }
+
+    .section-title {
+        font-size: 0.95rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #c7d6d5;
+        margin-bottom: 1.2rem;
+    }
+
+    .body-text {
+        color: #ecebf3;
+        line-height: 1.7;
+    }
+    .stack-list li {
+        padding: 0.35rem 0;
+        color: #d1d1d1;
+    }
+
 </style>
 {% endblock %}
 
 {% block body %}
-<div class="container py-5">
+<div class="page">
 
-    <div class="text-center mb-5">
-        <h1 class="fw-bold">About the Project</h1>
-        <p class="text-muted mt-2">
-            A cloud-based data processing and analytics platform
+    <div class="mb-4">
+        <h1 class="fw-semibold mb-1">About</h1>
+        <p class="text-muted mb-0">
+            Cloud-based data processing and analysis platform
         </p>
     </div>
 
-    <div class="card about-card p-4 mb-5">
-        <div class="card-body">
-            <p class="mb-3">
-                <strong>Data Proc</strong> is a cloud-hosted data analytics platform designed to simplify
-                exploratory data analysis for structured datasets. Users can upload CSV files, configure
-                analysis options, and generate statistical insights and visual summaries through a
-                user-friendly web interface.
-            </p>
-            <p class="mb-0">
-                The platform emphasizes modular design, scalability, and usability, combining modern
-                web technologies with Python-based data processing tools.
-            </p>
-        </div>
+    <div class="section">
+        <div class="section-title">Project</div>
+        <p class="body-text">
+            Data Proc is a web-based data analysis platform designed to simplify
+            EDA for structured datasets. It allows users to upload datasets, configure analysis parameters, and generate statistical summaries and insights.
+        </p>
     </div>
 
-    <div class="row mb-5">
-        <div class="col-md-6 mb-4">
-            <div class="card about-card p-4 h-100">
-                <h5 class="mb-3">Technologies Used</h5>
-                <ul class="list-unstyled mb-0">
-                    <li>• Flask (Backend Framework)</li>
-                    <li>• Bootstrap (Frontend UI)</li>
-                    <li>• Pandas & NumPy (Data Processing)</li>
-                    <li>• Docker (Containerization)</li>
-                </ul>
-            </div>
-        </div>
+    <div class="section">
+    <div class="section-title">Technology stack</div>
 
-        <div class="col-md-6 mb-4">
-            <div class="card about-card p-4 h-100">
-                <h5 class="mb-3">Project Objectives</h5>
-                <ul class="list-unstyled mb-0">
-                    <li>• Enable intuitive dataset upload and analysis</li>
-                    <li>• Provide schema-aware statistical insights</li>
-                    <li>• Maintain modular and scalable architecture</li>
-                    <li>• Support cloud-based deployment</li>
-                </ul>
-            </div>
-        </div>
+    <ul class="list-unstyled stack-list">
+        <li>Flask — backend web framework</li>
+        <li>Pandas & NumPy — data processing and analysis</li>
+        <li>Bootstrap — frontend layout and styling</li>
+        <li>Docker — containerized deployment</li>
+        <li>AWS — cloud hosting infrastructure</li>
+    </ul>
+</div>
+
+    <div class="section">
+        <div class="section-title">Team</div>
+        <p class="body-text mb-1">Arnav J Rathod</p>
+        <p class="body-text mb-1">Aditya N Sharma</p>
     </div>
 
-    <div class="text-center mb-4">
-        <h3 class="fw-bold">Team</h3>
-    </div>
-
-    <div class="row justify-content-center">
-        <div class="col-md-4 mb-4">
-            <div class="card about-card text-center p-4">
-                <h5 class="mb-1">Arnav J Rathod</h5>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-            <div class="card about-card text-center p-4">
-                <h5 class="mb-1">Aditya N Sharma</h5>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer Note -->
-    <div class="text-center mt-5 text-muted small">
-        Project developed for the Third-year B. Sc (Computer Science) final semester project.
+    <div class="section">
+        <p class="text-muted small mb-0">
+            Developed as part of the Third-year B. Sc. (Computer Science) Final Semester project.
+        </p>
     </div>
 
 </div>

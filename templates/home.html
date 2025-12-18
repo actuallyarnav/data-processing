@@ -1,95 +1,65 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block head %}
 <title>Home | Data Proc</title>
 <style>
-    .upload-card {
-        border-radius: 14px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    
+    .upload-wrapper {
+        max-width: 720px;
+        margin: 0 auto;
     }
 
-    .upload-box {
-        border: 2px dashed #6c757d;
-        border-radius: 12px;
-        padding: 30px;
-        transition: all 0.2s ease-in-out;
+    .upload-title {
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
     }
 
-    .upload-box:hover {
-        border-color: #0d6efd;
-        background-color: rgba(13, 110, 253, 0.05);
+    .upload-subtitle {
+        color: #c7d6d5;
+        margin-bottom: 2rem;
+    }
+
+    .file-input {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 1.2rem;
+    }
+
+    .file-input:focus {
+        box-shadow: none;
+        border-color: #ffffff;
     }
 </style>
 {% endblock %}
 
 {% block body %}
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh">
-    <div class="col-lg-6 col-md-8">
+<div class="upload-wrapper">
 
-        <!-- Title -->
-        <div class="text-center mb-4">
-            <h1 class="fw-bold">Data Processing Platform</h1>
-            <p class="text-muted">
-                Upload a data file for analysis
-            </p>
+    <div class="mb-4">
+        <div class="upload-title">Upload a dataset</div>
+        <div class="upload-subtitle">
+            CSV files only.
         </div>
-
-        <!-- Upload Card -->
-        <div class="card upload-card p-4 mb-4">
-            <div class="card-body">
-
-                <form enctype="multipart/form-data" action="/upload" method="POST">
-                    <div class="upload-box text-center mb-3">
-                        <p class="text-muted mb-2">(only .csv files accepted)</p>
-                        <input
-                            class="form-control"
-                            name="file"
-                            type="file"
-                            accept=".csv"
-                            required
-                        />
-                    </div>
-
-                    <div class="d-grid">
-                        <button
-                            type="submit"
-                            id="submit-btn"
-                            class="btn btn-primary btn-lg"
-                        >
-                            Upload File
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-
-        <!-- Column Selection -->
-        <!-- {% if columns|length > 1 %}
-        <div class="card upload-card p-4">
-            <div class="card-body">
-                <h5 class="mb-3">Select a column to analyze</h5>
-
-                <form action="{{ url_for('analyze') }}" method="post">
-                    <select name="selected_column" class="form-select mb-3" required>
-                        <option value="" disabled selected>Select a column</option>
-                        {% for column in columns %}
-                        <option value="{{ column }}">{{ column }}</option>
-                        {% endfor %}
-                    </select>
-
-                    <input type="hidden" name="filename" value="{{ filename }}">
-
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-success">
-                            Analyze Column
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        {% endif %} -->
-
     </div>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+
+    <div class="mb-4">
+        <input
+            type="file"
+            name="file"
+            class="file-input form-control"
+            accept=".csv"
+            required
+        >
+    </div>
+
+    <button type="submit" class="btn btn-custom px-4">
+        Analyze →
+    </button>
+
+</form>
+
 </div>
 {% endblock %}

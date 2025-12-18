@@ -1,144 +1,149 @@
 {% extends "base.html" %}
 
 {% block head %}
-<title>Analyze Dataset | Data Proc</title>
+<title>Analyze | Data Proc</title>
 <style>
-    .section-card {
-        border-radius: 14px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    .page {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .section {
+        padding: 2.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .section:last-child {
+        border-bottom: none;
+    }
+
+    .section-title {
+        font-size: 0.95rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #9aa0a6;
+        margin-bottom: 1.2rem;
+    }
+
+    .dataset-meta {
+        font-size: 0.95rem;
+        color: #c7d6d5;
+    }
+
+    .column-group h6 {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #9aa0a6;
+        margin-bottom: 0.75rem;
+    }
+
+    .form-check-label {
+        font-size: 0.95rem;
     }
 </style>
 {% endblock %}
 
 {% block body %}
-<div class="container py-4">
+<div class="container page py-5">
 
-    <!-- Page Header -->
     <div class="mb-4">
-        <h2 class="fw-bold">Configure Analysis</h2>
-        <p class="text-muted mb-0">
+        <h1 class="fw-semibold mb-1">Configure analysis</h1>
+        <div class="dataset-meta">
             Dataset: <strong>{{ filename }}</strong>
-        </p>
+        </div>
     </div>
 
     <form action="{{ url_for('generate.generate') }}" method="post">
 
-        <!-- Dataset Overview -->
-        <div class="card section-card mb-4">
-            <div class="card-body">
-                <h5 class="mb-3">Dataset Overview</h5>
-                <p class="mb-1">Total Columns: {{ columns | length }}</p>
-                <p class="mb-0 text-muted">
-                    Select the columns and analysis options below
-                </p>
-            </div>
+        <div class="section">
+            <div class="section-title">Dataset overview</div>
+            <p class="mb-1">
+                Columns detected: {{ columns | length }}
+            </p>
+            <p class="text-muted mb-0">
+                Select the columns and analysis steps you want to apply.
+            </p>
         </div>
 
-        <!-- Column Selection -->
-        <div class="card section-card mb-4">
-            <div class="card-body">
-                <h5 class="mb-3">Column Selection</h5>
+        <div class="section">
+            <div class="section-title">Columns</div>
 
-                <div class="row">
-                    <!-- Numeric Columns -->
-                    <div class="col-md-6 mb-3">
-                        <h6>Numeric Columns</h6>
-                        {% for col in columns if col.type == 'numeric' %}
-                        <div class="form-check">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                name="numeric_cols"
-                                value="{{ col.name }}"
-                                id="num-{{ col.name }}"
-                            >
-                            <label class="form-check-label" for="num-{{ col.name }}">
-                                {{ col.name }}
-                            </label>
-                        </div>
-                        {% else %}
-                        <p class="text-muted small">No numeric columns detected.</p>
-                        {% endfor %}
+            <div class="row">
+                <div class="col-md-6 column-group mb-4 mb-md-0">
+                    <h6>Numeric</h6>
+                    {% for col in columns if col.type == 'numeric' %}
+                    <div class="form-check mb-1">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="numeric_cols"
+                            value="{{ col.name }}"
+                            id="num-{{ col.name }}"
+                        >
+                        <label class="form-check-label" for="num-{{ col.name }}">
+                            {{ col.name }}
+                        </label>
                     </div>
+                    {% else %}
+                    <p class="text-muted small">No numeric columns</p>
+                    {% endfor %}
+                </div>
 
-                    <!-- Categorical Columns -->
-                    <div class="col-md-6 mb-3">
-                        <h6>Categorical Columns</h6>
-                        {% for col in columns if col.type == 'categorical' %}
-                        <div class="form-check">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                name="categorical_cols"
-                                value="{{ col.name }}"
-                                id="cat-{{ col.name }}"
-                            >
-                            <label class="form-check-label" for="cat-{{ col.name }}">
-                                {{ col.name }}
-                            </label>
-                        </div>
-                        {% else %}
-                        <p class="text-muted small">No categorical columns detected.</p>
-                        {% endfor %}
+                <div class="col-md-6 column-group">
+                    <h6>Categorical</h6>
+                    {% for col in columns if col.type == 'categorical' %}
+                    <div class="form-check mb-1">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="categorical_cols"
+                            value="{{ col.name }}"
+                            id="cat-{{ col.name }}"
+                        >
+                        <label class="form-check-label" for="cat-{{ col.name }}">
+                            {{ col.name }}
+                        </label>
                     </div>
+                    {% else %}
+                    <p class="text-muted small">No categorical columns</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
 
-        <!-- Analysis Options -->
-        <div class="card section-card mb-4">
-            <div class="card-body">
-                <h5 class="mb-3">Analysis Options</h5>
+        <!-- analysis options start here -->
+        <div class="section">
+            <div class="section-title">Analysis</div>
 
-                <div class="form-check">
-                    <input
-                        class="form-check-input"
-                        type="checkbox"
-                        name="options"
-                        value="summary"
-                        id="opt-summary"
-                    >
-                    <label class="form-check-label" for="opt-summary">
-                        Summary statistics
-                    </label>
-                </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" name="options" value="summary" id="opt-summary">
+                <label class="form-check-label" for="opt-summary">
+                    Summary statistics
+                </label>
+            </div>
 
-                <div class="form-check">
-                    <input
-                        class="form-check-input"
-                        type="checkbox"
-                        name="options"
-                        value="missing"
-                        id="opt-missing"
-                    >
-                    <label class="form-check-label" for="opt-missing">
-                        Missing value analysis
-                    </label>
-                </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" name="options" value="missing" id="opt-missing">
+                <label class="form-check-label" for="opt-missing">
+                    Missing value analysis
+                </label>
+            </div>
 
-                <div class="form-check">
-                    <input
-                        class="form-check-input"
-                        type="checkbox"
-                        name="options"
-                        value="categorical"
-                        id="opt-categorical"
-                    >
-                    <label class="form-check-label" for="opt-categorical">
-                        Categorical frequency analysis
-                    </label>
-                </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="options" value="categorical" id="opt-categorical">
+                <label class="form-check-label" for="opt-categorical">
+                    Categorical distributions
+                </label>
             </div>
         </div>
 
-        <!-- Submit -->
-        <div class="d-grid">
-            <button type="submit" class="btn btn-success btn-lg">
-                Generate Results
+        <div class="section d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary btn-custom">
+                Generate results →
             </button>
         </div>
 
     </form>
-
 </div>
 {% endblock %}

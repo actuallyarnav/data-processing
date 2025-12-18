@@ -30,8 +30,9 @@ Open ```http://127.0.0.1:8080/``` in a web browser
 ## Currently working
 1. File uploads via HTML form
 2. File Storage via Flask
+3. Process data using basic techniques
+3. Display the results (numerical, visual, etc.)
 
 ## To Do
 1. Upload various kinda of files
-2. Process data using various techniques
-3. Display the results (numerical, visual, etc.)
+2. Use more complex and informative techniques

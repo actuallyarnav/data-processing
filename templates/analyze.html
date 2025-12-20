@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-
-{% block head %}
+{% extends "base.html" %} {% block head %}
 <title>Analyze | Data Proc</title>
 <style>
     .page {
@@ -42,25 +40,17 @@
         font-size: 0.95rem;
     }
 </style>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="container page py-5">
-
     <div class="mb-4">
         <h1 class="fw-semibold mb-1">Configure analysis</h1>
-        <div class="dataset-meta">
-            Dataset: <strong>{{ filename }}</strong>
-        </div>
+        <div class="dataset-meta">Dataset: <strong>{{ filename }}</strong></div>
     </div>
 
     <form action="{{ url_for('generate.generate') }}" method="post">
-
         <div class="section">
             <div class="section-title">Dataset overview</div>
-            <p class="mb-1">
-                Columns detected: {{ columns | length }}
-            </p>
+            <p class="mb-1">Columns detected: {{ columns | length }}</p>
             <p class="text-muted mb-0">
                 Select the columns and analysis steps you want to apply.
             </p>
@@ -80,8 +70,11 @@
                             name="numeric_cols"
                             value="{{ col.name }}"
                             id="num-{{ col.name }}"
+                        />
+                        <label
+                            class="form-check-label"
+                            for="num-{{ col.name }}"
                         >
-                        <label class="form-check-label" for="num-{{ col.name }}">
                             {{ col.name }}
                         </label>
                     </div>
@@ -100,8 +93,11 @@
                             name="categorical_cols"
                             value="{{ col.name }}"
                             id="cat-{{ col.name }}"
+                        />
+                        <label
+                            class="form-check-label"
+                            for="cat-{{ col.name }}"
                         >
-                        <label class="form-check-label" for="cat-{{ col.name }}">
                             {{ col.name }}
                         </label>
                     </div>
@@ -117,21 +113,39 @@
             <div class="section-title">Analysis</div>
 
             <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" name="options" value="summary" id="opt-summary">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="options"
+                    value="summary"
+                    id="opt-summary"
+                />
                 <label class="form-check-label" for="opt-summary">
                     Summary statistics
                 </label>
             </div>
 
             <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" name="options" value="missing" id="opt-missing">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="options"
+                    value="missing"
+                    id="opt-missing"
+                />
                 <label class="form-check-label" for="opt-missing">
                     Missing value analysis
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="options" value="categorical" id="opt-categorical">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="options"
+                    value="categorical"
+                    id="opt-categorical"
+                />
                 <label class="form-check-label" for="opt-categorical">
                     Categorical distributions
                 </label>
@@ -143,7 +157,6 @@
                 Generate results →
             </button>
         </div>
-
     </form>
 </div>
 {% endblock %}

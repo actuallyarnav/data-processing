@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-
-{% block head %}
+{% extends "base.html" %} {% block head %}
 <title>About | Data Proc</title>
 <style>
     .page {
@@ -33,13 +31,9 @@
         padding: 0.35rem 0;
         color: #d1d1d1;
     }
-
 </style>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="page">
-
     <div class="mb-4">
         <h1 class="fw-semibold mb-1">About</h1>
         <p class="text-muted mb-0">
@@ -51,21 +45,23 @@
         <div class="section-title">Project</div>
         <p class="body-text">
             Data Proc is a web-based data analysis platform designed to simplify
-            EDA for structured datasets. It allows users to upload datasets, configure analysis parameters, and generate statistical summaries and insights.
+            EDA for structured datasets. It allows users to upload datasets,
+            configure analysis parameters, and generate statistical summaries
+            and insights.
         </p>
     </div>
 
     <div class="section">
-    <div class="section-title">Technology stack</div>
+        <div class="section-title">Technology stack</div>
 
-    <ul class="list-unstyled stack-list">
-        <li>Flask — backend web framework</li>
-        <li>Pandas & NumPy — data processing and analysis</li>
-        <li>Bootstrap — frontend layout and styling</li>
-        <li>Docker — containerized deployment</li>
-        <li>AWS — cloud hosting infrastructure</li>
-    </ul>
-</div>
+        <ul class="list-unstyled stack-list">
+            <li>Flask — backend web framework</li>
+            <li>Pandas & NumPy — data processing and analysis</li>
+            <li>Bootstrap — frontend layout and styling</li>
+            <li>Docker — containerized deployment</li>
+            <li>AWS — cloud hosting infrastructure</li>
+        </ul>
+    </div>
 
     <div class="section">
         <div class="section-title">Team</div>
@@ -75,9 +71,9 @@
 
     <div class="section">
         <p class="text-muted small mb-0">
-            Developed as part of the Third-year B. Sc. (Computer Science) Final Semester project.
+            Developed as part of the Third-year B. Sc. (Computer Science) Final
+            Semester project.
         </p>
     </div>
-
 </div>
 {% endblock %}

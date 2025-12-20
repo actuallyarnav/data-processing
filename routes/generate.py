@@ -1,8 +1,19 @@
-from flask import Blueprint, request, redirect, flash, session, current_app, render_template
 import os
+
 import pandas as pd
+from flask import (
+    Blueprint,
+    current_app,
+    flash,
+    redirect,
+    render_template,
+    request,
+    session,
+)
 
 generate_bp = Blueprint("generate", __name__)
+
+
 @generate_bp.route("/generate", methods=["POST"])
 def generate():
     if "filename" not in session:
@@ -36,8 +47,7 @@ def generate():
     if "missing" in options and (numeric_cols or categorical_cols):
         missing = df[numeric_cols + categorical_cols].isna().sum()
         results["missing"] = (
-            missing
-            .rename("Missing Values")
+            missing.rename("Missing Values")
             .to_frame()
             .to_html(classes="table table-striped table-bordered", border=0)
         )

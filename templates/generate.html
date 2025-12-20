@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-
-{% block head %}
+{% extends "base.html" %} {% block head %}
 <title>Results | Data Proc</title>
 <style>
     .page {
@@ -34,56 +32,45 @@
         font-size: 0.9rem;
     }
 </style>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="page">
-
     <div class="mb-4">
         <h1 class="fw-semibold mb-1">Analysis results</h1>
-        <div class="dataset-meta">
-            Dataset: <strong>{{ filename }}</strong>
-        </div>
+        <div class="dataset-meta">Dataset: <strong>{{ filename }}</strong></div>
     </div>
 
     {% if results.summary %}
     <div class="section">
         <div class="section-title">Summary statistics</div>
-        <div class="table-responsive">
-            {{ results.summary | safe }}
-        </div>
+        <div class="table-responsive">{{ results.summary | safe }}</div>
     </div>
-    {% endif %}
-
-    {% if results.missing %}
+    {% endif %} {% if results.missing %}
     <div class="section">
         <div class="section-title">Missing values</div>
         <div class="table table-striped-columns">
             {{ results.missing | safe }}
         </div>
     </div>
-    {% endif %}
-
-    {% if results.categorical %}
+    {% endif %} {% if results.categorical %}
     <div class="section">
         <div class="section-title">Categorical distributions</div>
 
         {% for col, table in results.categorical.items() %}
-            <div class="mb-4">
-                <div class="text-muted mb-2">{{ col }}</div>
-                <div class="table table-striped-columns">
-                    {{ table | safe }}
-                </div>
-            </div>
+        <div class="mb-4">
+            <div class="text-muted mb-2">{{ col }}</div>
+            <div class="table table-striped-columns">{{ table | safe }}</div>
+        </div>
         {% endfor %}
     </div>
     {% endif %}
 
     <div class="section d-flex justify-content-between align-items-center">
-        <a href="{{ url_for('analyze.analyze') }}" class="text-muted text-decoration-none">
+        <a
+            href="{{ url_for('analyze.analyze') }}"
+            class="text-muted text-decoration-none"
+        >
             ← Back to analysis
         </a>
     </div>
-
 </div>
 {% endblock %}

@@ -1,9 +1,6 @@
-{% extends "base.html" %}
-
-{% block head %}
+{% extends "base.html" %} {% block head %}
 <title>Home | Data Proc</title>
 <style>
-    
     .upload-wrapper {
         max-width: 720px;
         margin: 0 auto;
@@ -31,35 +28,25 @@
         border-color: #ffffff;
     }
 </style>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="upload-wrapper">
-
     <div class="mb-4">
         <div class="upload-title">Upload a dataset</div>
-        <div class="upload-subtitle">
-            CSV files only.
-        </div>
+        <div class="upload-subtitle">CSV files only.</div>
     </div>
 
     <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="mb-4">
+            <input
+                type="file"
+                name="file"
+                class="file-input form-control"
+                accept=".csv"
+                required
+            />
+        </div>
 
-    <div class="mb-4">
-        <input
-            type="file"
-            name="file"
-            class="file-input form-control"
-            accept=".csv"
-            required
-        >
-    </div>
-
-    <button type="submit" class="btn btn-custom px-4">
-        Analyze →
-    </button>
-
-</form>
-
+        <button type="submit" class="btn btn-custom px-4">Analyze →</button>
+    </form>
 </div>
 {% endblock %}
